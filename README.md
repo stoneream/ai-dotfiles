@@ -24,3 +24,7 @@ diff ~/.codex/config.toml ./codex-config/backup-config.toml
 # apply
 cp ./codex-config/config.toml ~/.codex/config.toml
 ```
+
+## 関連リポジトリ
+
+- https://github.com/stoneream/toolbox
