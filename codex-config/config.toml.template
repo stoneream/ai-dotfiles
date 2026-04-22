@@ -5,5 +5,10 @@ sandbox_mode = "workspace-write"
 personality = "pragmatic"
 notify = ["bash", "HOME_DIR_PATH/ghq/github.com/stoneream/toolbox/codex-play-notify.sh"]
 
+web_search = "cached"
+
 [notice]
 hide_rate_limit_model_nudge = true
+
+[analytics]
+enabled = false
