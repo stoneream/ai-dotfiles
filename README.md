@@ -25,6 +25,12 @@ diff ~/.codex/config.toml ./codex-config/backup-config.toml
 cp ./codex-config/config.toml ~/.codex/config.toml
 ```
 
+## ~/.codex/rules/default.rules
+
+```bash
+./codex-config/link-rules.sh
+```
+
 ## 関連リポジトリ
 
 - https://github.com/stoneream/toolbox
