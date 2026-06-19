@@ -1,2 +1,6 @@
 config.toml
+hooks.json
 backup-config.toml
+backup-hooks.json
+codex-config/dist/
+codex-config/backup/

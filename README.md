@@ -10,7 +10,7 @@
 ./skills/link-skills.sh
 ```
 
-## ~/.codex/config.toml
+## ~/.codex/config.toml / hooks.json
 
 信用済みのディレクトリがconfig.tomlに追記されるが、機微な名前を含むディレクトリの露出防止のため以下の手順になっている。
 
@@ -19,10 +19,12 @@
 ./codex-config/generate-config.sh
 
 # diff (信頼済みプロジェクトをよしなにコピペ)
-diff ~/.codex/config.toml ./codex-config/backup-config.toml
+diff ./codex-config/backup/config.toml ./codex-config/dist/config.toml
+diff ./codex-config/backup/hooks.json ./codex-config/dist/hooks.json
 
 # apply
-cp ./codex-config/config.toml ~/.codex/config.toml
+cp ./codex-config/dist/config.toml ~/.codex/config.toml
+cp ./codex-config/dist/hooks.json ~/.codex/hooks.json
 ```
 
 ## ~/.codex/rules/default.rules
