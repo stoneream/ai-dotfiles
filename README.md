@@ -2,12 +2,16 @@
 
 ## スキル
 
-```bash
-# 実行内容のドライラン
-./skills/link-skills.sh --dry-run
+`skills/` 直下の各ディレクトリを、`~/.codex/skills/` と `~/.claude/skills/` へ同名のシンボリックリンクとして同期する。
+このリポジトリを指すリンクのうち、リンク先がなくなったものは同期時に削除する。
+通常ファイル、通常ディレクトリ、別のリンクと競合する場合は上書きせずに終了する。
 
-# skills/* を ~/.codex/skills/* と ~/.claude/skills/* にリンクする
-./skills/link-skills.sh
+```bash
+# リンクの作成・削除内容を確認する
+./scripts/link-skills.sh --dry-run
+
+# リンクを同期する
+./scripts/link-skills.sh
 ```
 
 ## ~/.codex/config.toml / hooks.json
