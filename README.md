@@ -2,7 +2,8 @@
 
 ## スキル
 
-`skills/` 直下の各ディレクトリを、`~/.codex/skills/` と `~/.claude/skills/` へ同名のシンボリックリンクとして同期する。
+`skills/` 直下にある `SKILL.md` を含む各ディレクトリを、`~/.agents/skills/`、`~/.codex/skills/`、`~/.claude/skills/` へ同名のシンボリックリンクとして同期する。
+Codex の現在の標準探索先は `~/.agents/skills/` とし、`~/.codex/skills/` は既存環境との互換用に維持する。
 このリポジトリを指すリンクのうち、リンク先がなくなったものは同期時に削除する。
 通常ファイル、通常ディレクトリ、別のリンクと競合する場合は上書きせずに終了する。
 
@@ -12,6 +13,14 @@
 
 # リンクを同期する
 ./scripts/link-skills.sh
+```
+
+## リンク検査
+
+リポジトリ全体のリンクを検査するには、[mise](https://mise.jdx.dev/) をインストールし、リポジトリルートで次を実行する。
+
+```bash
+mise run lint:links
 ```
 
 ## ~/.codex/config.toml / hooks.json
