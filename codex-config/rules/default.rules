@@ -1,7 +1,0 @@
-prefix_rule(pattern=["sbt"], decision="allow")
-prefix_rule(pattern=["sbt", "compile"], decision="allow")
-prefix_rule(pattern=["sbt", "test"], decision="allow")
-prefix_rule(pattern=["sbt", "scalafmtAll"], decision="allow")
-prefix_rule(pattern=["sbt", "scalafixAll"], decision="allow")
-prefix_rule(pattern=["gh", "issue"], decision="allow")
-prefix_rule(pattern=["git", "show"], decision="allow")
