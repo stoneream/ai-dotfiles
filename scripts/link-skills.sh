@@ -30,16 +30,40 @@ REPO_ROOT=$(CDPATH='' cd -- "$SCRIPT_DIR/.." && pwd)
 SOURCE_ROOT="$REPO_ROOT/skills"
 TARGET_HOME=${LINK_SKILLS_HOME:-"$HOME"}
 TARGET_DIRS=(
+  "$TARGET_HOME/.agents/skills"
   "$TARGET_HOME/.codex/skills"
   "$TARGET_HOME/.claude/skills"
 )
 SOURCE_DIRS=()
+has_invalid_sources=0
 
 for source_dir in "$SOURCE_ROOT"/*; do
-  if [ -d "$source_dir" ]; then
-    SOURCE_DIRS+=("$source_dir")
+  [ -d "$source_dir" ] || continue
+
+  if [ ! -f "$source_dir/SKILL.md" ]; then
+    echo "ignoring directory without SKILL.md: $source_dir" >&2
+    continue
   fi
+
+  skill_name=$(basename -- "$source_dir")
+  declared_name=$(sed -n 's/^name:[[:space:]]*//p' "$source_dir/SKILL.md" | head -n 1)
+  declared_name=${declared_name#\"}
+  declared_name=${declared_name%\"}
+  declared_name=${declared_name#\'}
+  declared_name=${declared_name%\'}
+
+  if [ "$declared_name" != "$skill_name" ]; then
+    echo "skill name does not match directory: $source_dir (name: ${declared_name:-missing})" >&2
+    has_invalid_sources=1
+    continue
+  fi
+
+  SOURCE_DIRS+=("$source_dir")
 done
+
+if [ "$has_invalid_sources" -ne 0 ]; then
+  exit 1
+fi
 
 if [ "${#SOURCE_DIRS[@]}" -eq 0 ]; then
   echo "no skill directories found: $SOURCE_ROOT" >&2
@@ -69,7 +93,9 @@ is_stale_managed_skill_link() {
   link_parent=${link_target%/*}
 
   # Only direct children of SOURCE_ROOT are links managed by this script.
-  [ "$link_parent" = "$SOURCE_ROOT" ] && [ ! -d "$link_target" ]
+  [ "$link_parent" = "$SOURCE_ROOT" ] && {
+    [ ! -d "$link_target" ] || [ ! -f "$link_target/SKILL.md" ]
+  }
 }
 
 validate_target_dir() {
