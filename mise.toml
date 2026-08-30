@@ -1,0 +1,6 @@
+[tools]
+lychee = "0.24.2"
+
+[tasks."lint:links"]
+description = "Check repository links"
+run = "lychee --config lychee.toml ."

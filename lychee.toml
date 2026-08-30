@@ -1,0 +1,10 @@
+no_progress = true
+format = "detailed"
+
+# Retry transient external-site failures without overwhelming individual hosts.
+max_retries = 3
+max_concurrency = 8
+
+# MCP and API endpoints commonly require authentication or reject browser-style
+# checks while still being reachable.
+accept = ["100..=103", "200..=299", "401", "403", "405"]
