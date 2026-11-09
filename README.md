@@ -15,6 +15,14 @@ Codex の現在の標準探索先は `~/.agents/skills/` とし、`~/.codex/skil
 ./scripts/link-skills.sh
 ```
 
+## Claudeの設定
+
+~/.claude/settings.jsonをリンクする。
+
+```bash
+./scripts/link-claude-settings.sh
+```
+
 ## リンク検査
 
 リポジトリ全体のリンクを検査するには、[mise](https://mise.jdx.dev/) をインストールし、リポジトリルートで次を実行する。
