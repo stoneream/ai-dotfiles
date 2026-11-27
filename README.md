@@ -17,10 +17,17 @@ Codex の現在の標準探索先は `~/.agents/skills/` とし、`~/.codex/skil
 
 ## Claudeの設定
 
-~/.claude/settings.jsonをリンクする。
+`~/.claude/settings.json` と `.claude/settings.json` の間で `permissions`、`hooks`、`sandbox` を同期する。
+`permissions.allow` 内の `mcp__*` エントリは環境固有のため、同期時に自動で除外・保持される。
 
 ```bash
-./scripts/link-claude-settings.sh
+# ~/.claude/settings.json → リポジトリへ取り込む (pull)
+./scripts/sync-claude-settings.sh --dry-run
+./scripts/sync-claude-settings.sh
+
+# リポジトリ → ~/.claude/settings.json へ反映する (push)
+./scripts/apply-claude-settings.sh --dry-run
+./scripts/apply-claude-settings.sh
 ```
 
 ## リンク検査
